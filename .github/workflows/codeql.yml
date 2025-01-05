@@ -32,12 +32,6 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
-        queries: |
-          +codeql/cpp-queries
-          +codeql/security-extended
-          +codeql/performance-queries
-          +codeql/maintainability-queries
-          +codeql/reliability-queries
         
     - if: matrix.build-mode == 'manual'
       shell: bash
