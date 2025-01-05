@@ -1,6 +1,19 @@
-obj-m = dvkm.o
-KVERSION = $(shell uname -r)
-all:
-	make -C /lib/modules/$(KVERSION)/build M=$(PWD) modules
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+LDFLAGS =
+
+TARGETS = test_dvkm dvkm
+
+all: $(TARGETS)
+
+test_dvkm: test_dvkm.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+dvkm: dvkm.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	make -C /lib/modules/$(KVERSION)/build M=$(PWD) clean
+	rm -f $(TARGETS) *.o
