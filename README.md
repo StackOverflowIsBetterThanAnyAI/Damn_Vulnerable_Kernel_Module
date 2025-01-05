@@ -18,7 +18,7 @@ Feel free to utilize this example kernel module to learn and improve your skills
 4. run make commmand
 
 ### Compiling using Makefile
-1. just run ```"make"```
+1. just run ```make```
    ![image](https://github.com/hardik05/Damn_Vulnerable_Kernel_Module/assets/22524976/14fbcb45-4ce7-4c74-bec3-04159503642b)
 2. then use ```sudo insmod dvkm.ko```
 3. if you want to remove use "sudo rmmod dvkm"
