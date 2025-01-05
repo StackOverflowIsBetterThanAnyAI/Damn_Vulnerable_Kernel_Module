@@ -1,0 +1,6 @@
+queries:
+  - uses: codeql/cpp-queries
+  - name: security-extended
+  - name: performance
+  - name: maintainability
+  - name: reliability
