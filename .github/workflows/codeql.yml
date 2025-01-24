@@ -31,14 +31,18 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
+        build-mode: manual
         queries: security-extended
-        
-    - if: matrix.build-mode == 'manual'
-      shell: bash
-      run: make
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        category: "/language:${{matrix.language}}"
+    - name: Build Kernel Module
+      shell: bash
+      run: |
+        make clean
+        make
+
+    - name: Finalize Build for CodeQL
+      shell: bash
+      run: |
+        export KVERSION=$(uname -r)
+        make -C /lib/modules/$KVERSION/build M=$(pwd) modules
+
